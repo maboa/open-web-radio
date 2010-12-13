@@ -51,7 +51,7 @@ body {
 	margin: 0 auto;
 	font-family: Arial,Helvetica,sans-serif;
 	color: red;
-	background: #000 url('radio_bgr.jpg') top center no-repeat;
+	background: #000 url('../img/radio_bgr.jpg') top center no-repeat;
 	position: relative;
 }
 
@@ -59,7 +59,7 @@ body {
 	position: relative;
 	width:20px;
 	height:38px;
-	background: transparent url('dialer.png') 0 0 no-repeat;
+	background: transparent url('../img/dialer.png') 0 0 no-repeat;
 	left: 300px;
 	top: 188px;
 }
@@ -68,7 +68,7 @@ body {
 	position: relative;
 	width:152px;
 	height:152px;
-	background: transparent url('tuning.png') 0 0 no-repeat;
+	background: transparent url('../img/tuning.png') 0 0 no-repeat;
 	left: 130px;
 	top: 343px;
 	-webkit-transform: rotate(76deg); 
@@ -80,7 +80,7 @@ body {
 	position: relative;
 	width:82px;
 	height:82px;
-	background: transparent url('volume.png') 0 0 no-repeat;
+	background: transparent url('../img/volume.png') 0 0 no-repeat;
 	left: 385px;
 	top: 192px;
 	-webkit-transform: rotate(76deg); 
@@ -92,8 +92,14 @@ body {
 	position: absolute;
 	width:145px;
 	height:38px;
-	background: transparent url('shine.png') 0 0 no-repeat;
+	background: transparent url('../img/shine.png') 0 0 no-repeat;
 	left: 160px;
 	top: 188px;
-}
+} 
+
+img { border: 0; }
+
+/* Tiny Circleslider */
+
+#tuning .thumb { background:url(../img/bg-thumb.png) no-repeat 50% 50%; position: absolute; top: -3px; cursor: pointer; left: 137px; width: 50px; z-index: 200;  height: 50px; }
 

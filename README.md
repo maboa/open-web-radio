@@ -1,1 +1,24 @@
-![open-web-radio](https://github.com/maboa/open-web-radio/blob/master/src/img/radio_bgr_full.jpg)
+open-web-radio - web application
+
+Intentions:
+
+- to demonstrate what is possible with HTML5 (audio) and CSS3 
+- open source
+- cross-platform
+- HTML5 based falling back to Flash
+- to look good and be intuitive to use
+- to incorporate hundreds of free streaming channels
+
+Technologies / Frameworks:
+
+- jQuery : http://jquery.com/
+- jPlayer : http://happyworm.com/jquery/jplayer/
+- Tiny Circleslider : http://www.baijs.nl/tinycircleslider/
+
+Contributors:
+
+Silvia Benvenuti
+Mark Boas     
+Trygve Lie
+             
+![open-web-radio](https://github.com/maboa/open-web-radio/raw/master/src/img/radio_bgr_full.jpg)

@@ -17,8 +17,8 @@ Technologies / Frameworks:
 
 Contributors:
 
-Silvia Benvenuti
-Mark Boas
+Silvia Benvenuti,
+Mark Boas,
 Trygve Lie
              
 ![open-web-radio](https://github.com/maboa/open-web-radio/raw/master/src/img/radio_bgr_full.jpg)

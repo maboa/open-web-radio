@@ -60,7 +60,7 @@ body {
 	width:20px;
 	height:38px;
 	background: transparent url('../img/dialer.png') 0 0 no-repeat;
-	left: 300px;
+	left: 60px;
 	top: 188px;
 }
 
@@ -99,7 +99,5 @@ body {
 
 img { border: 0; }
 
-/* Tiny Circleslider */
 
-#tuning .thumb { background:url(../img/bg-thumb.png) no-repeat 50% 50%; position: absolute; top: -3px; cursor: pointer; left: 137px; width: 50px; z-index: 200;  height: 50px; }
 

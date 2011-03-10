@@ -27,7 +27,7 @@ $(document).ready(function(){
 		return(pc);
 	}
 	
-	function spinTuning(event,self) {
+	function spinTuning(event,self) {   
 		var pc = getArcPc(event.position.x,event.position.y,self);       
 		var degs = pc * 3.6+"deg"; 
 		self.css({rotate: degs});  
@@ -37,8 +37,9 @@ $(document).ready(function(){
 	$('#tuning').grab({
 		onstart: function(){     
 			// dragging = true;
-		}, onmove: function(event){
-			var pc = spinDial(event,$(this)); 
+		}, onmove: function(event){ 
+			// iOS doesn't like $(this) being passed thru
+			var pc = spinDial(event,$('#tuning')); 
 			$('#dialer').css('left',((pc*8.8)+60)+'px');     
 		}, onfinish: function(event){
            // do your funky thang here ...
@@ -48,8 +49,9 @@ $(document).ready(function(){
 	$('#volume').grab({
 		onstart: function(){     
 			//dragging = true;
-		}, onmove: function(event){
-			spinDial(event,$(this));   
+		}, onmove: function(event){   
+			// iOS doesn't like $(this) being passed thru
+			spinDial(event,$('#volume'));   
 		}
 	}); 
 	

@@ -60,7 +60,7 @@ body {
 	width:20px;
 	height:38px;
 	background: transparent url('../img/dialer.png') 0 0 no-repeat;
-	left: 60px;
+	left: 250px;
 	top: 188px;
 }
 
@@ -83,9 +83,9 @@ body {
 	background: transparent url('../img/volume.png') 0 0 no-repeat;
 	left: 385px;
 	top: 192px;
-	-webkit-transform: rotate(76deg); 
-	-moz-transform: rotate(76deg);	
-	-o-transform: rotate(76deg);
+	-webkit-transform: rotate(270deg); 
+	-moz-transform: rotate(270deg);	
+	-o-transform: rotate(270deg);
 }
 
 #shine {

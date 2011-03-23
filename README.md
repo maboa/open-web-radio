@@ -1,4 +1,8 @@
-open-web-radio - web application
+open-web-radio - web application     
+
+Try the latest version 
+
+[Version 5](http://happyworm.com/jPlayerLab/openwebradio/v05/)
 
 Intentions:
 
@@ -19,8 +23,9 @@ Technologies / Frameworks:
 Todo:
 
 - Tweak CSS/HTML and jQuery.grab to work on mobile devices 
-- Plug in jPlayer :)
-- Add streaming channels
+- Add more streaming channels
+- Display title of channels as they are found
+- Save last used channel in local cache
 
 Contributors:
 
@@ -28,5 +33,5 @@ Silvia Benvenuti,
 Mark Boas,
 Trygve Lie
              
-![open-web-radio](https://github.com/maboa/open-web-radio/raw/master/src/img/radio_bgr_full.jpg)      
+![open-web-radio](https://github.com/maboa/open-web-radio/raw/master/openwebradio.jpg)      
 

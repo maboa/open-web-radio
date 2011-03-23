@@ -1,6 +1,36 @@
-$(document).ready(function(){   
+$(document).ready(function(){    
 	
+	// jPlayer stuff
 	
+	var myPlayer = $("#jquery_jplayer_1");   
+	var station = 0;   
+	
+	var stations = [
+		{mp3: "http://mp3-vr-128.as34763.net:80/;stream/1",
+		oga: "http://ogg2.as34763.net/vr160.ogg"}, 
+		{mp3: "http://mp3-vc-128.as34763.net:80/;stream/1",
+		oga: "http://ogg2.as34763.net/vc160.ogg"},
+		{mp3: "http://mp3-a8-128.as34763.net:80/;stream/1",
+		oga: "http://ogg2.as34763.net/a8160.ogg"},
+		{mp3: "http://mp3-a9-128.as34763.net:80/;stream/1",
+		oga: "http://ogg2.as34763.net/a9160.ogg"},
+		{mp3: "http://mp3-a0-128.as34763.net:80/;stream/1",
+		oga: "http://ogg2.as34763.net/a0160.ogg"}                      
+	];
+
+	myPlayer.jPlayer({
+		ready: function () {
+      		$(this).jPlayer("setMedia", {
+				mp3: stations[station].mp3, oga: stations[station].oga
+      		});
+    	},   
+		solution: "html, flash",
+    	swfPath: "js",
+    	supplied: "mp3, oga"
+        //errorAlerts: "true",
+		//warningAlerts: "true"
+  	}); 
+   
 	function getArcPc(pageX, pageY, elem) { 
 		var	self	= elem,
 			offset	= self.offset(),
@@ -19,27 +49,110 @@ $(document).ready(function(){
 		   
 		return pc;
 	} 
+	      
+	var zoneSize = 100/stations.length;  
+   
 	
-	function spinDial(event,self) {
+	function spinTuning(event) {
+		var self = $('#tuning');
 		var pc = getArcPc(event.position.x,event.position.y,self);       
 		var degs = pc * 3.6+"deg"; 
-		self.css({rotate: degs});  
+		self.css({rotate: degs}); 
+		
+		// Check for station change
+		
+		for (i=0; i<stations.length; i++)
+		{
+			if (pc > i*zoneSize && pc <= (i+1)*zoneSize && i != station) {
+			   	// Change stations  
+			   	//console.log('station = '+i);
+				station = i;  
+				myPlayer.jPlayer("setMedia", {
+					mp3: stations[station].mp3, oga: stations[station].oga
+		      	});
+		           
+				// delay before playing or Firefox will stall for 15 seconds
+		
+				setTimeout(function() {myPlayer.jPlayer('play');},1500);
+
+			}
+		}
+		
+		return(pc);
+	}    
+	
+	function startChannel(){
+		
+	}
+	      
+	var switchedOn = false;
+	var volume = 0;    
+	
+	function spinVolume(event) {
+		var self = $('#volume');  
+	   
+		var pc = getArcPc(event.position.x,event.position.y,self);     
+		
+		// may be a better way of grabbing the degrees
+        //newVolPos = $('#volume').data('transform').rotate * 180 / Math.PI;  
+		
+		var degs = pc * 3.6+"deg";   
+		//var cssDegs = degs    
+		 
+		/*if ((pc > 75 && pc < 100) || (pc > 0 && pc < 25)) {
+			 self.css({rotate: degs});   
+		} */ 
+		
+		
+		
+		if (pc >= 50 && pc < 75) {
+			degs = '270deg';    
+			if (switchedOn == true) {
+				// stop the audio stream and set the media ready for playing 
+
+				myPlayer.jPlayer("setMedia", {
+					mp3: stations[station].mp3, oga: stations[station].oga
+		      	});    
+				volume = 0;      
+				//console.log('off');
+			}
+			switchedOn = false;   
+			
+		}
+		else { 
+			if (switchedOn == false) {
+				// play the audio stream
+				myPlayer.jPlayer("play");   
+			}
+			switchedOn = true;        
+			if (pc >= 75) {
+			   volume = (pc - 75) * 2; 
+			} 
+			
+			if (pc <= 25) {
+				volume = (pc * 2) + 50;
+			}        
+			
+			myPlayer.jPlayer("volume",volume/100);
+			
+			//console.log(pc);   
+			//console.log("vol="+volume);
+		}
+		
+		if (pc > 25 && pc < 50) degs = '90deg';  
+        self.css({rotate: degs});   
+
+		//console.log(pc);
+
 		return(pc);
 	}
 	
-	function spinTuning(event,self) {   
-		var pc = getArcPc(event.position.x,event.position.y,self);       
-		var degs = pc * 3.6+"deg"; 
-		self.css({rotate: degs});  
-		$('#dialer').css('left',((pc*8.8)+60)+'px');		
-	}
 	
 	$('#tuning').grab({
 		onstart: function(){     
 			// dragging = true;
 		}, onmove: function(event){ 
-			// iOS doesn't like $(this) being passed thru
-			var pc = spinDial(event,$('#tuning')); 
+			var pc = spinTuning(event); 
 			$('#dialer').css('left',((pc*8.8)+60)+'px');     
 		}, onfinish: function(event){
            // do your funky thang here ...
@@ -50,8 +163,8 @@ $(document).ready(function(){
 		onstart: function(){     
 			//dragging = true;
 		}, onmove: function(event){   
-			// iOS doesn't like $(this) being passed thru
-			spinDial(event,$('#volume'));   
+			var pc = spinVolume(event);   
+			//console.log(pc);
 		}
 	}); 
 	
